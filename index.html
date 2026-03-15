@@ -1,0 +1,1416 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RÉFLEXION — Зеркала & Интерьер</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --gold: #c9a96e;
+  --gold-light: #e0c99a;
+  --dark: #0c0f14;
+  --dark2: #141820;
+  --dark3: #1a1f2a;
+  --text: #e4ddd3;
+  --text-dim: #8a8279;
+  --text-muted: #5a5550;
+  --glass: rgba(255,255,255,0.04);
+  --glass2: rgba(255,255,255,0.07);
+  --border: rgba(255,255,255,0.06);
+  --border-gold: rgba(201,169,110,0.2);
+  --font-display: 'Cormorant Garamond', 'Georgia', serif;
+  --font-body: 'Outfit', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-display);
+  background: var(--dark);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.5;
+}
+
+/* ─── HEADER ─── */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(12,15,20,0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.logo-icon {
+  width: 36px; height: 36px;
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; color: var(--dark);
+}
+
+.logo-text h1 {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: 1px;
+}
+
+.logo-text span {
+  font-family: var(--font-body);
+  font-size: 9px;
+  letter-spacing: 4px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
+
+.desktop-nav {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+
+.nav-link {
+  color: var(--text-dim);
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 8px 0;
+  cursor: pointer;
+  transition: color 0.3s;
+  background: none;
+  border: none;
+  position: relative;
+}
+
+.nav-link:hover, .nav-link.active { color: var(--gold); }
+
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: var(--gold);
+}
+
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: 1px solid rgba(255,255,255,0.15);
+  color: var(--gold);
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.mobile-nav-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(12,15,20,0.97);
+  z-index: 1000;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+}
+
+.mobile-nav-overlay.open { display: flex; }
+.mobile-nav-overlay .nav-link { font-size: 18px; }
+
+/* ─── SECTIONS ─── */
+.section {
+  display: none;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section.active {
+  display: block;
+  animation: fadeSlideUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes glow {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.7; }
+}
+
+/* ─── BUTTONS ─── */
+.gold-btn {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  padding: 14px 36px;
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  cursor: pointer;
+  transition: all 0.4s;
+}
+
+.gold-btn:hover {
+  background: var(--gold);
+  color: var(--dark);
+}
+
+.gold-btn.secondary {
+  border-color: rgba(255,255,255,0.15);
+  color: var(--text);
+}
+
+.gold-btn.secondary:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.gold-btn.full { width: 100%; text-align: center; }
+.gold-btn.sm { padding: 10px 20px; font-size: 11px; }
+
+/* ─── CARDS ─── */
+.card {
+  background: var(--glass);
+  border: 1px solid var(--border);
+  padding: 28px;
+  transition: all 0.4s;
+}
+
+.card:hover {
+  background: var(--glass2);
+  border-color: var(--border-gold);
+  transform: translateY(-4px);
+}
+
+/* ─── TAGS ─── */
+.tag {
+  font-family: var(--font-body);
+  font-size: 11px;
+  letter-spacing: 1px;
+  padding: 4px 10px;
+  background: rgba(201,169,110,0.1);
+  color: var(--gold);
+  border: 1px solid rgba(201,169,110,0.15);
+  display: inline-block;
+}
+
+.feature-tag {
+  font-family: var(--font-body);
+  font-size: 10px;
+  letter-spacing: 0.5px;
+  padding: 3px 8px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  display: inline-block;
+}
+
+/* ─── SECTION TITLES ─── */
+.section-label {
+  font-family: var(--font-body);
+  font-size: 11px;
+  letter-spacing: 5px;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 300;
+}
+
+.section-subtitle {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--text-dim);
+  margin-top: 12px;
+}
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,169,110,0.15) 0%, transparent 70%);
+  animation: glow 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.orb-1 { width: 400px; height: 400px; top: -100px; right: -100px; }
+.orb-2 { width: 300px; height: 300px; bottom: -50px; left: -80px; animation-delay: 2s; }
+
+.hero-content {
+  display: flex;
+  align-items: center;
+  gap: 80px;
+  flex-wrap: wrap;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-text { max-width: 480px; }
+
+.hero-text .section-label { margin-bottom: 20px; }
+
+.hero-text h2 {
+  font-size: clamp(36px, 6vw, 64px);
+  font-weight: 300;
+  line-height: 1.1;
+  margin-bottom: 24px;
+}
+
+.hero-text h2 em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.hero-text p {
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--text-dim);
+  line-height: 1.7;
+  margin-bottom: 36px;
+  max-width: 380px;
+}
+
+.hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+
+.hero-mirror-wrap { position: relative; }
+
+.hero-mirror {
+  width: 200px; height: 280px;
+  background: linear-gradient(135deg, #c5d3e0 0%, #e8edf2 25%, #b8c9d9 50%, #dce5ed 75%, #c5d3e0 100%);
+  background-size: 200% 200%;
+  animation: shimmer 6s ease infinite, float 6s ease-in-out infinite;
+  border: 1px solid rgba(255,255,255,0.2);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5), inset 0 0 60px rgba(255,255,255,0.1);
+}
+
+.hero-stat {
+  position: absolute;
+  bottom: -20px; right: -20px;
+  background: var(--dark2);
+  border: 1px solid var(--border-gold);
+  padding: 14px 20px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+.hero-stat strong {
+  color: var(--gold);
+  font-size: 22px;
+  font-weight: 600;
+  display: block;
+}
+
+.hero-stat span { color: var(--text-dim); }
+
+/* ─── FEATURES GRID ─── */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1px;
+  margin-bottom: 80px;
+  background: rgba(255,255,255,0.03);
+}
+
+.feature-item {
+  padding: 40px;
+  background: var(--dark2);
+}
+
+.feature-item .icon {
+  font-size: 28px;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+
+.feature-item h3 {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.feature-item p {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+
+/* ─── CATALOG ─── */
+.catalog-section { padding-top: 60px; padding-bottom: 80px; }
+
+.filter-bar {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 48px;
+}
+
+.filter-btn {
+  font-family: var(--font-body);
+  font-size: 12px;
+  letter-spacing: 1px;
+  padding: 8px 20px;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.08);
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.filter-btn.active, .filter-btn:hover {
+  background: rgba(201,169,110,0.15);
+  border-color: rgba(201,169,110,0.3);
+  color: var(--gold);
+}
+
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.catalog-card .card-image {
+  height: 160px;
+  background: linear-gradient(135deg, var(--dark3), rgba(201,169,110,0.05));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 56px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+
+.catalog-card .card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.catalog-card .card-header h3 {
+  font-size: 22px;
+  font-weight: 400;
+}
+
+.catalog-card .card-desc {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.catalog-card .card-features {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.catalog-card .card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.price-from {
+  font-family: var(--font-body);
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+.price-value {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--gold);
+}
+
+/* ─── CALCULATOR ─── */
+.calc-section { padding-top: 60px; padding-bottom: 80px; }
+
+.calc-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.calc-label {
+  font-family: var(--font-body);
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.type-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+
+.type-btn {
+  padding: 12px 14px;
+  background: var(--glass);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 12px;
+  text-align: left;
+  transition: all 0.3s;
+}
+
+.type-btn.active, .type-btn:hover {
+  background: rgba(201,169,110,0.12);
+  border-color: rgba(201,169,110,0.3);
+  color: var(--gold);
+}
+
+.shape-bar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+
+.shape-btn {
+  flex: 1;
+  padding: 14px;
+  background: var(--glass);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 12px;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.shape-btn .shape-icon { font-size: 20px; margin-bottom: 4px; display: block; }
+
+.shape-btn.active, .shape-btn:hover {
+  background: rgba(201,169,110,0.12);
+  border-color: rgba(201,169,110,0.3);
+  color: var(--gold);
+}
+
+.slider-group { margin-bottom: 28px; }
+
+.slider-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.slider-value {
+  font-family: var(--font-body);
+  font-size: 16px;
+  color: var(--gold);
+  font-weight: 600;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 3px;
+  background: var(--dark3);
+  border-radius: 2px;
+  outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: var(--gold);
+  cursor: pointer;
+  border: 2px solid var(--dark);
+  box-shadow: 0 0 10px rgba(201,169,110,0.4);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: var(--gold);
+  cursor: pointer;
+  border: 2px solid var(--dark);
+}
+
+.slider-limits {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-body);
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+.input-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.input-row > div { flex: 1; }
+
+.input-row label {
+  font-family: var(--font-body);
+  font-size: 10px;
+  color: var(--text-muted);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.num-input {
+  width: 100%;
+  padding: 10px 14px;
+  background: var(--glass);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.num-input:focus { border-color: var(--border-gold); }
+
+.preview-box {
+  background: var(--glass);
+  border: 1px solid var(--border);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.preview-label {
+  font-family: var(--font-body);
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.price-card {
+  background: linear-gradient(135deg, rgba(201,169,110,0.08), rgba(201,169,110,0.02));
+  border: 1px solid rgba(201,169,110,0.15);
+  padding: 32px;
+}
+
+.price-card .total-label {
+  font-family: var(--font-body);
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.price-card .total-price {
+  font-size: clamp(32px, 5vw, 48px);
+  font-weight: 600;
+  color: var(--gold);
+  margin-bottom: 16px;
+  line-height: 1;
+}
+
+.price-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-bottom: 24px;
+}
+
+.price-details .detail-label {
+  color: var(--text-muted);
+  font-size: 10px;
+  margin-bottom: 2px;
+}
+
+.price-base {
+  font-family: var(--font-body);
+  font-size: 11px;
+  color: var(--text-muted);
+  padding: 12px 0;
+  border-top: 1px solid var(--border);
+  margin-bottom: 20px;
+}
+
+/* ─── INFO ─── */
+.info-section {
+  padding-top: 60px;
+  padding-bottom: 80px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.info-text {
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--text-dim);
+  line-height: 2;
+  margin-bottom: 48px;
+}
+
+.info-text p { margin-bottom: 20px; }
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: rgba(255,255,255,0.03);
+  margin-bottom: 48px;
+}
+
+.stat-item {
+  background: var(--dark2);
+  padding: 36px 24px;
+  text-align: center;
+}
+
+.stat-item .stat-num {
+  font-size: 36px;
+  font-weight: 600;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+.stat-item .stat-label {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--text-dim);
+  letter-spacing: 1px;
+}
+
+.process-grid { display: grid; gap: 20px; }
+
+.process-card {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.process-card .step-num {
+  font-size: 32px;
+  font-weight: 300;
+  color: rgba(201,169,110,0.3);
+  font-family: var(--font-body);
+  flex-shrink: 0;
+}
+
+.process-card h4 {
+  font-size: 18px;
+  font-weight: 400;
+  margin-bottom: 6px;
+}
+
+.process-card p {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+
+/* ─── CONTACTS ─── */
+.contacts-section {
+  padding-top: 60px;
+  padding-bottom: 80px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.contacts-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.contact-card .contact-icon {
+  font-size: 24px;
+  margin-bottom: 12px;
+  color: var(--gold);
+}
+
+.contact-card .contact-label {
+  font-family: var(--font-body);
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.contact-card .contact-value {
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 4px;
+}
+
+.contact-card .contact-sub {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+.form-card { padding: 40px; }
+.form-card h3 { font-size: 22px; font-weight: 400; margin-bottom: 24px; }
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.form-input {
+  padding: 14px 16px;
+  background: var(--glass);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 14px;
+  outline: none;
+  width: 100%;
+  transition: border-color 0.3s;
+}
+
+.form-input:focus { border-color: var(--border-gold); }
+
+.form-textarea {
+  width: 100%;
+  padding: 14px 16px;
+  background: var(--glass);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 14px;
+  outline: none;
+  resize: vertical;
+  margin-bottom: 20px;
+  min-height: 100px;
+  transition: border-color 0.3s;
+}
+
+.form-textarea:focus { border-color: var(--border-gold); }
+
+/* ─── FOOTER ─── */
+.footer {
+  border-top: 1px solid rgba(255,255,255,0.04);
+  padding: 32px 24px;
+  margin-top: 40px;
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footer-copy {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.footer-socials { display: flex; gap: 24px; }
+
+.footer-socials a {
+  font-family: var(--font-body);
+  font-size: 11px;
+  color: var(--text-muted);
+  text-decoration: none;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.footer-socials a:hover { color: var(--gold); }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 768px) {
+  .desktop-nav { display: none !important; }
+  .mobile-menu-btn { display: block; }
+
+  .hero-content { gap: 40px; }
+  .catalog-grid { grid-template-columns: 1fr; }
+  .calc-layout { grid-template-columns: 1fr; }
+  .contacts-grid { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .stats-grid { grid-template-columns: 1fr; }
+  .type-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <a class="logo" onclick="navigate('home')">
+      <div class="logo-icon">◆</div>
+      <div class="logo-text">
+        <h1>RÉFLEXION</h1>
+        <span>Зеркала & Интерьер</span>
+      </div>
+    </a>
+    <nav class="desktop-nav" id="desktopNav"></nav>
+    <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+  </div>
+</header>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav-overlay" id="mobileNav"></div>
+
+<!-- ═══════ HOME ═══════ -->
+<div class="section active" id="section-home">
+  <div class="hero">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="hero-content">
+      <div class="hero-text">
+        <div class="section-label">Премиальные зеркала на заказ</div>
+        <h2>Отражение<br><em>вашего</em><br>стиля</h2>
+        <p>Изготовление зеркал любых форм и размеров. Индивидуальный подход к каждому проекту. Доставка и установка по всей Германии.</p>
+        <div class="hero-btns">
+          <button class="gold-btn" onclick="navigate('catalog')">Каталог</button>
+          <button class="gold-btn secondary" onclick="navigate('calculator')">Калькулятор</button>
+        </div>
+      </div>
+      <div class="hero-mirror-wrap">
+        <div class="hero-mirror"></div>
+        <div class="hero-stat">
+          <strong>500+</strong>
+          <span>проектов в год</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="features-grid">
+    <div class="feature-item">
+      <div class="icon">◈</div>
+      <h3>Индивидуальный размер</h3>
+      <p>Любые размеры от 20×20 до 300×400 см</p>
+    </div>
+    <div class="feature-item">
+      <div class="icon">◇</div>
+      <h3>Премиум качество</h3>
+      <p>Зеркала от ведущих европейских производителей</p>
+    </div>
+    <div class="feature-item">
+      <div class="icon">△</div>
+      <h3>Монтаж и доставка</h3>
+      <p>Бесплатная доставка и установка по Франкфурту</p>
+    </div>
+    <div class="feature-item">
+      <div class="icon">○</div>
+      <h3>Гарантия 5 лет</h3>
+      <p>Полная гарантия на все изделия и монтаж</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ CATALOG ═══════ -->
+<div class="section" id="section-catalog">
+  <div class="catalog-section">
+    <div style="text-align:center; margin-bottom:48px;">
+      <div class="section-label">Коллекция</div>
+      <h2 class="section-title">Наши зеркала</h2>
+    </div>
+    <div class="filter-bar" id="filterBar"></div>
+    <div class="catalog-grid" id="catalogGrid"></div>
+  </div>
+</div>
+
+<!-- ═══════ CALCULATOR ═══════ -->
+<div class="section" id="section-calculator">
+  <div class="calc-section">
+    <div style="text-align:center; margin-bottom:48px;">
+      <div class="section-label">Конфигуратор</div>
+      <h2 class="section-title">Калькулятор стоимости</h2>
+      <p class="section-subtitle">Настройте параметры зеркала и узнайте стоимость мгновенно</p>
+    </div>
+    <div class="calc-layout">
+      <!-- LEFT -->
+      <div>
+        <div>
+          <span class="calc-label">Тип зеркала</span>
+          <div class="type-grid" id="typeGrid"></div>
+        </div>
+
+        <div>
+          <span class="calc-label">Форма</span>
+          <div class="shape-bar" id="shapeBar"></div>
+        </div>
+
+        <div class="slider-group">
+          <div class="slider-header">
+            <span class="calc-label" id="widthLabel">Ширина</span>
+            <span class="slider-value" id="widthValue">60 см</span>
+          </div>
+          <input type="range" min="20" max="300" value="60" id="widthSlider" oninput="updateCalc()">
+          <div class="slider-limits"><span>20 см</span><span>300 см</span></div>
+        </div>
+
+        <div class="slider-group">
+          <div class="slider-header">
+            <span class="calc-label" id="heightLabel">Высота</span>
+            <span class="slider-value" id="heightValue">80 см</span>
+          </div>
+          <input type="range" min="20" max="400" value="80" id="heightSlider" oninput="updateCalc()">
+          <div class="slider-limits"><span>20 см</span><span>400 см</span></div>
+        </div>
+
+        <div class="input-row">
+          <div>
+            <label>Точная ширина (см)</label>
+            <input type="number" class="num-input" id="widthInput" value="60" min="20" max="300" oninput="syncFromInput('width')">
+          </div>
+          <div>
+            <label>Точная высота (см)</label>
+            <input type="number" class="num-input" id="heightInput" value="80" min="20" max="400" oninput="syncFromInput('height')">
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT -->
+      <div>
+        <div class="preview-box">
+          <div class="preview-label">Предпросмотр</div>
+          <svg id="previewSvg" width="240" height="240" viewBox="0 0 240 240"></svg>
+        </div>
+
+        <div class="price-card">
+          <div class="total-label">Итого</div>
+          <div class="total-price" id="totalPrice">0 ₽</div>
+
+          <div class="price-details">
+            <div><div class="detail-label">Тип</div><span id="detailType">—</span></div>
+            <div><div class="detail-label">Форма</div><span id="detailShape">—</span></div>
+            <div><div class="detail-label">Размер</div><span id="detailSize">—</span></div>
+            <div><div class="detail-label">Площадь</div><span id="detailArea">—</span></div>
+          </div>
+
+          <div class="price-base" id="priceBase"></div>
+
+          <button class="gold-btn full">Оформить заказ</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ INFO ═══════ -->
+<div class="section" id="section-info">
+  <div class="info-section">
+    <div style="text-align:center; margin-bottom:56px;">
+      <div class="section-label">О компании</div>
+      <h2 class="section-title">RÉFLEXION</h2>
+    </div>
+
+    <div class="info-text">
+      <p>Мы — компания с более чем 15-летним опытом в производстве и установке зеркал премиум-класса. Наша мастерская расположена во Франкфурте-на-Майне, и мы обслуживаем клиентов по всей Германии.</p>
+      <p>Каждое зеркало изготавливается по индивидуальным размерам с использованием высококачественного стекла от ведущих европейских производителей. Мы предлагаем широкий выбор обработки краёв, типов подсветки и рамок.</p>
+      <p>Наша команда включает опытных стекольщиков, дизайнеров и монтажников, которые обеспечивают безупречное качество на каждом этапе — от замера до установки.</p>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-item"><div class="stat-num">15+</div><div class="stat-label">лет опыта</div></div>
+      <div class="stat-item"><div class="stat-num">3 000+</div><div class="stat-label">выполненных заказов</div></div>
+      <div class="stat-item"><div class="stat-num">98%</div><div class="stat-label">довольных клиентов</div></div>
+    </div>
+
+    <h3 style="font-size:24px; font-weight:400; margin-bottom:32px; text-align:center;">Как мы работаем</h3>
+    <div class="process-grid">
+      <div class="card process-card"><div class="step-num">01</div><div><h4>Консультация</h4><p>Обсуждаем ваши пожелания, замеряем пространство, подбираем оптимальное решение.</p></div></div>
+      <div class="card process-card"><div class="step-num">02</div><div><h4>Производство</h4><p>Изготавливаем зеркало на собственном производстве с контролем качества на каждом этапе.</p></div></div>
+      <div class="card process-card"><div class="step-num">03</div><div><h4>Доставка и монтаж</h4><p>Бережно доставляем и профессионально устанавливаем зеркало в вашем интерьере.</p></div></div>
+      <div class="card process-card"><div class="step-num">04</div><div><h4>Гарантия</h4><p>Предоставляем 5-летнюю гарантию и постгарантийное обслуживание.</p></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ CONTACTS ═══════ -->
+<div class="section" id="section-contacts">
+  <div class="contacts-section">
+    <div style="text-align:center; margin-bottom:56px;">
+      <div class="section-label">Связаться с нами</div>
+      <h2 class="section-title">Контакты</h2>
+    </div>
+
+    <div class="contacts-grid">
+      <div class="card contact-card"><div class="contact-icon">☎</div><div class="contact-label">Телефон</div><div class="contact-value">+49 69 123 456 78</div><div class="contact-sub">Пн–Пт 9:00 – 18:00</div></div>
+      <div class="card contact-card"><div class="contact-icon">✉</div><div class="contact-label">Email</div><div class="contact-value">info@reflexion-spiegel.de</div><div class="contact-sub">Ответим в течение 2 часов</div></div>
+      <div class="card contact-card"><div class="contact-icon">◎</div><div class="contact-label">Адрес</div><div class="contact-value">Musterstraße 42</div><div class="contact-sub">60311 Frankfurt am Main</div></div>
+      <div class="card contact-card"><div class="contact-icon">◈</div><div class="contact-label">WhatsApp</div><div class="contact-value">+49 170 123 45 67</div><div class="contact-sub">Быстрая связь</div></div>
+    </div>
+
+    <div class="card form-card">
+      <h3>Оставьте заявку</h3>
+      <div class="form-row">
+        <input class="form-input" placeholder="Ваше имя">
+        <input class="form-input" placeholder="Телефон или Email">
+      </div>
+      <textarea class="form-textarea" placeholder="Опишите ваш проект..." rows="4"></textarea>
+      <button class="gold-btn">Отправить заявку</button>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-copy">© 2026 RÉFLEXION — Зеркала & Интерьер. Frankfurt am Main</div>
+    <div class="footer-socials">
+      <a>Instagram</a>
+      <a>Facebook</a>
+      <a>Pinterest</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ─── DATA ───
+const MIRRORS = [
+  { id:1, name:"Классическое", category:"classic", basePrice:85, pricePerSqM:4200, image:"🪞", desc:"Элегантное зеркало с фацетной обработкой края. Идеально для прихожей и гостиной.", thickness:"4 мм", features:["Фацет 20мм","Полировка края","Крепёж в комплекте"] },
+  { id:2, name:"С LED подсветкой", category:"led", basePrice:180, pricePerSqM:7800, image:"💡", desc:"Современное зеркало с встроенной LED-подсветкой и сенсорным выключателем.", thickness:"5 мм", features:["LED 6500K","Сенсор касания","Антизапотевание","IP44"] },
+  { id:3, name:"Безрамное", category:"frameless", basePrice:65, pricePerSqM:3400, image:"◻️", desc:"Минималистичное зеркало без рамы с обработанным краем. Универсальное решение.", thickness:"4 мм", features:["Еврокромка","Скрытый крепёж","Влагостойкое"] },
+  { id:4, name:"В багетной раме", category:"framed", basePrice:220, pricePerSqM:6500, image:"🖼️", desc:"Зеркало в роскошной багетной раме ручной работы. Подчеркнёт статус интерьера.", thickness:"5 мм", features:["Багет дерево","Патина золото","Ручная работа","На заказ"] },
+  { id:5, name:"Круглое", category:"round", basePrice:120, pricePerSqM:5200, image:"⭕", desc:"Стильное круглое зеркало. Тренд современного интерьерного дизайна.", thickness:"4 мм", features:["Диаметр от 40см","Полировка","Подвес в комплекте"] },
+  { id:6, name:"С гравировкой", category:"engraved", basePrice:300, pricePerSqM:9200, image:"✨", desc:"Уникальное зеркало с художественной пескоструйной гравировкой по вашему эскизу.", thickness:"6 мм", features:["Пескоструй","Индивид. рисунок","Закалённое стекло","Премиум"] },
+];
+
+const CATEGORIES = [
+  { key:"all", label:"Все" },
+  { key:"classic", label:"Классические" },
+  { key:"led", label:"С подсветкой" },
+  { key:"frameless", label:"Безрамные" },
+  { key:"framed", label:"В раме" },
+  { key:"round", label:"Круглые" },
+  { key:"engraved", label:"С гравировкой" },
+];
+
+const SHAPES = [
+  { key:"rect", label:"Прямоугольное", icon:"▬" },
+  { key:"round", label:"Круглое", icon:"●" },
+  { key:"arch", label:"Арочное", icon:"⌓" },
+];
+
+const NAV_ITEMS = [
+  { key:"home", label:"Главная" },
+  { key:"catalog", label:"Каталог" },
+  { key:"calculator", label:"Калькулятор" },
+  { key:"info", label:"О нас" },
+  { key:"contacts", label:"Контакты" },
+];
+
+// ─── STATE ───
+let currentSection = "home";
+let currentCategory = "all";
+let calcType = 0;
+let calcShape = "rect";
+
+// ─── NAVIGATION ───
+function navigate(section) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  const el = document.getElementById('section-' + section);
+  if (el) {
+    el.classList.remove('active');
+    void el.offsetWidth; // force reflow for re-animation
+    el.classList.add('active');
+  }
+  currentSection = section;
+  renderNav();
+  closeMobileMenu();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function renderNav() {
+  const desktop = document.getElementById('desktopNav');
+  desktop.innerHTML = NAV_ITEMS.map(n =>
+    `<button class="nav-link ${currentSection === n.key ? 'active' : ''}" onclick="navigate('${n.key}')">${n.label}</button>`
+  ).join('');
+
+  const mobile = document.getElementById('mobileNav');
+  mobile.innerHTML = NAV_ITEMS.map(n =>
+    `<button class="nav-link ${currentSection === n.key ? 'active' : ''}" onclick="navigate('${n.key}')">${n.label}</button>`
+  ).join('');
+}
+
+function toggleMobileMenu() {
+  document.getElementById('mobileNav').classList.toggle('open');
+}
+
+function closeMobileMenu() {
+  document.getElementById('mobileNav').classList.remove('open');
+}
+
+// ─── CATALOG ───
+function renderCatalog() {
+  // Filters
+  const bar = document.getElementById('filterBar');
+  bar.innerHTML = CATEGORIES.map(c =>
+    `<button class="filter-btn ${currentCategory === c.key ? 'active' : ''}" onclick="filterCatalog('${c.key}')">${c.label}</button>`
+  ).join('');
+
+  // Cards
+  const grid = document.getElementById('catalogGrid');
+  const filtered = currentCategory === 'all' ? MIRRORS : MIRRORS.filter(m => m.category === currentCategory);
+
+  grid.innerHTML = filtered.map((m, i) => `
+    <div class="card catalog-card" style="animation-delay:${i * 0.1}s">
+      <div class="card-image">${m.image}</div>
+      <div class="card-header">
+        <h3>${m.name}</h3>
+        <span class="tag">${m.thickness}</span>
+      </div>
+      <p class="card-desc">${m.desc}</p>
+      <div class="card-features">
+        ${m.features.map(f => `<span class="feature-tag">${f}</span>`).join('')}
+      </div>
+      <div class="card-footer">
+        <div>
+          <span class="price-from">от </span>
+          <span class="price-value">${formatPrice(m.basePrice)}</span>
+        </div>
+        <button class="gold-btn sm" onclick="openCalcFor(${MIRRORS.indexOf(m)})">Рассчитать</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function filterCatalog(cat) {
+  currentCategory = cat;
+  renderCatalog();
+}
+
+function openCalcFor(idx) {
+  calcType = idx;
+  navigate('calculator');
+  renderCalcTypes();
+  updateCalc();
+}
+
+// ─── CALCULATOR ───
+function renderCalcTypes() {
+  const grid = document.getElementById('typeGrid');
+  grid.innerHTML = MIRRORS.map((m, i) =>
+    `<button class="type-btn ${calcType === i ? 'active' : ''}" onclick="setCalcType(${i})">${m.image} ${m.name}</button>`
+  ).join('');
+}
+
+function renderCalcShapes() {
+  const bar = document.getElementById('shapeBar');
+  bar.innerHTML = SHAPES.map(s =>
+    `<button class="shape-btn ${calcShape === s.key ? 'active' : ''}" onclick="setCalcShape('${s.key}')">
+      <span class="shape-icon">${s.icon}</span>${s.label}
+    </button>`
+  ).join('');
+}
+
+function setCalcType(i) {
+  calcType = i;
+  renderCalcTypes();
+  updateCalc();
+}
+
+function setCalcShape(s) {
+  calcShape = s;
+  renderCalcShapes();
+  updateCalc();
+}
+
+function syncFromInput(dim) {
+  if (dim === 'width') {
+    let v = Math.min(300, Math.max(20, parseInt(document.getElementById('widthInput').value) || 20));
+    document.getElementById('widthSlider').value = v;
+    document.getElementById('widthInput').value = v;
+  } else {
+    let v = Math.min(400, Math.max(20, parseInt(document.getElementById('heightInput').value) || 20));
+    document.getElementById('heightSlider').value = v;
+    document.getElementById('heightInput').value = v;
+  }
+  updateCalc();
+}
+
+function updateCalc() {
+  const w = parseInt(document.getElementById('widthSlider').value);
+  const h = parseInt(document.getElementById('heightSlider').value);
+
+  document.getElementById('widthValue').textContent = w + ' см';
+  document.getElementById('heightValue').textContent = h + ' см';
+  document.getElementById('widthInput').value = w;
+  document.getElementById('heightInput').value = h;
+
+  // Labels
+  document.getElementById('widthLabel').textContent = calcShape === 'round' ? 'Диаметр гор.' : 'Ширина';
+  document.getElementById('heightLabel').textContent = calcShape === 'round' ? 'Диаметр верт.' : 'Высота';
+
+  const mirror = MIRRORS[calcType];
+
+  // Area
+  let area;
+  if (calcShape === 'round') {
+    area = Math.PI * (w / 200) * (h / 200);
+  } else if (calcShape === 'arch') {
+    area = (w / 100) * (h / 100) - (Math.pow(w / 200, 2) * ((Math.PI - 2) / 2) * -1);
+  } else {
+    area = (w / 100) * (h / 100);
+  }
+
+  const price = Math.round(mirror.basePrice + area * mirror.pricePerSqM);
+
+  document.getElementById('totalPrice').textContent = formatPrice(price);
+  document.getElementById('detailType').textContent = mirror.name;
+  document.getElementById('detailShape').textContent = SHAPES.find(s => s.key === calcShape).label;
+  document.getElementById('detailSize').textContent = w + ' × ' + h + ' см';
+  document.getElementById('detailArea').textContent = area.toFixed(2) + ' м²';
+  document.getElementById('priceBase').innerHTML =
+    'Базовая стоимость: ' + formatPrice(mirror.basePrice) + '<br>Стоимость за м²: ' + formatPrice(mirror.pricePerSqM);
+
+  drawPreview(w, h, calcShape);
+}
+
+function drawPreview(width, height, shape) {
+  const svg = document.getElementById('previewSvg');
+  const maxDim = 200;
+  const pad = 20;
+  const ratio = Math.min(maxDim / width, maxDim / height, 1);
+  const w = width * ratio;
+  const h = height * ratio;
+  const ox = (maxDim + pad * 2 - w) / 2;
+  const oy = (maxDim + pad * 2 - h) / 2;
+
+  let shapeHTML = '';
+  if (shape === 'rect') {
+    shapeHTML = `
+      <rect x="${ox}" y="${oy}" width="${w}" height="${h}" rx="3" fill="url(#mirrorGrad)" stroke="#a0b0c0" stroke-width="1.5"/>
+      <rect x="${ox}" y="${oy}" width="${w}" height="${h}" rx="3" fill="url(#mirrorShine)"/>`;
+  } else if (shape === 'round') {
+    shapeHTML = `
+      <ellipse cx="${ox + w/2}" cy="${oy + h/2}" rx="${w/2}" ry="${h/2}" fill="url(#mirrorGrad)" stroke="#a0b0c0" stroke-width="1.5"/>
+      <ellipse cx="${ox + w/2}" cy="${oy + h/2}" rx="${w/2}" ry="${h/2}" fill="url(#mirrorShine)"/>`;
+  } else {
+    const archR = w / 2;
+    shapeHTML = `
+      <path d="M ${ox} ${oy + h} L ${ox} ${oy + archR} A ${archR} ${archR} 0 0 1 ${ox + w} ${oy + archR} L ${ox + w} ${oy + h} Z"
+        fill="url(#mirrorGrad)" stroke="#a0b0c0" stroke-width="1.5"/>
+      <path d="M ${ox} ${oy + h} L ${ox} ${oy + archR} A ${archR} ${archR} 0 0 1 ${ox + w} ${oy + archR} L ${ox + w} ${oy + h} Z"
+        fill="url(#mirrorShine)"/>`;
+  }
+
+  svg.setAttribute('viewBox', `0 0 ${maxDim + pad * 2} ${maxDim + pad * 2}`);
+  svg.innerHTML = `
+    <defs>
+      <linearGradient id="mirrorGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#e8edf2"/>
+        <stop offset="30%" stop-color="#c5d3e0"/>
+        <stop offset="50%" stop-color="#dce5ed"/>
+        <stop offset="70%" stop-color="#b8c9d9"/>
+        <stop offset="100%" stop-color="#d0dbe6"/>
+      </linearGradient>
+      <linearGradient id="mirrorShine" x1="0%" y1="0%" x2="50%" y2="50%">
+        <stop offset="0%" stop-color="rgba(255,255,255,0.6)"/>
+        <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+      </linearGradient>
+      <filter id="mirrorShadow">
+        <feDropShadow dx="2" dy="4" stdDeviation="6" flood-color="rgba(0,0,0,0.18)"/>
+      </filter>
+    </defs>
+    <g filter="url(#mirrorShadow)">
+      ${shapeHTML}
+    </g>
+    <text x="${ox + w/2}" y="${oy + h/2 - 6}" text-anchor="middle" fill="#5a7088"
+      font-size="13" font-family="Outfit, sans-serif" font-weight="600">${width} × ${height}</text>
+    <text x="${ox + w/2}" y="${oy + h/2 + 12}" text-anchor="middle" fill="#7a95ab"
+      font-size="11" font-family="Outfit, sans-serif">см</text>
+  `;
+}
+
+function formatPrice(n) {
+  return n.toLocaleString('ru-RU') + ' ₽';
+}
+
+// ─── INIT ───
+renderNav();
+renderCatalog();
+renderCalcTypes();
+renderCalcShapes();
+updateCalc();
+</script>
+</body>
+</html>
