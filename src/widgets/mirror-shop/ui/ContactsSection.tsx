@@ -1,12 +1,46 @@
 "use client";
 
+import { useState, useCallback } from "react";
 import { cn } from "@/shared/lib/cn";
 
-const CONTACTS = [
-  { icon: "☎", label: "Телефон", value: "+49 69 123 456 78", sub: "Пн–Пт 9:00 – 18:00" },
-  { icon: "✉", label: "Email", value: "info@reflexion-spiegel.de", sub: "Ответим в течение 2 часов" },
-  { icon: "◎", label: "Адрес", value: "Musterstraße 42", sub: "60311 Frankfurt am Main" },
-  { icon: "◈", label: "WhatsApp", value: "+49 170 123 45 67", sub: "Быстрая связь" },
+const WHATSAPP_NUMBER = "79285006045";
+const INSTAGRAM_URL =
+  "https://www.instagram.com/zerkala_napoli?igsh=MW1uZzU1aDQ3aGh3ZA==";
+
+const CONTACTS: Array<{
+  icon: string;
+  label: string;
+  value: string;
+  sub: string;
+  href?: string;
+}> = [
+  {
+    icon: "☎",
+    label: "Телефон",
+    value: "+7 928 511 74 18",
+    sub: "Пн — Вс 09:00–18:00",
+    href: "tel:+79285117418",
+  },
+  {
+    icon: "◈",
+    label: "WhatsApp",
+    value: "+7 928 500 60 45",
+    sub: "Быстрая связь",
+    href: `https://wa.me/${WHATSAPP_NUMBER}`,
+  },
+  {
+    icon: "◎",
+    label: "Адрес",
+    value: "Проспект Имама Шамиля, 146",
+    sub: "1 этаж",
+  },
+  {
+    icon: "◇",
+    label: "Instagram",
+    value: "zerkala_napoli",
+    sub: "Мы в соцсетях",
+    href: INSTAGRAM_URL,
+  },
 ];
 
 const cardBase =
@@ -15,7 +49,50 @@ const cardBase =
 const inputBase =
   "w-full bg-white/5 border border-white/10 py-3.5 px-4 font-outfit text-sm text-text-primary outline-none placeholder:text-text-dim";
 
+type SubmitStatus = "idle" | "loading" | "success" | "error";
+
 export function ContactsSection({ className }: { className?: string }) {
+  const [name, setName] = useState("");
+  const [contact, setContact] = useState("");
+  const [message, setMessage] = useState("");
+  const [status, setStatus] = useState<SubmitStatus>("idle");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const handleSubmit = useCallback(
+    async (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      setErrorMessage("");
+      setStatus("loading");
+      try {
+        const res = await fetch("/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: name.trim(),
+            contact: contact.trim(),
+            message: message.trim(),
+          }),
+        });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok) {
+          setStatus("error");
+          setErrorMessage(
+            typeof data?.error === "string" ? data.error : "Не удалось отправить заявку"
+          );
+          return;
+        }
+        setStatus("success");
+        setName("");
+        setContact("");
+        setMessage("");
+      } catch {
+        setStatus("error");
+        setErrorMessage("Ошибка соединения");
+      }
+    },
+    [name, contact, message]
+  );
+
   return (
     <div className={cn("mx-auto max-w-3xl pb-20 pt-14", className)}>
       <div className="mb-14 text-center">
@@ -28,51 +105,98 @@ export function ContactsSection({ className }: { className?: string }) {
       </div>
 
       <div className="mb-10 grid grid-cols-1 gap-6 sm:grid-cols-2">
-        {CONTACTS.map((c) => (
-          <div key={c.label} className={cardBase}>
-            <div className="mb-3 text-2xl text-gold">{c.icon}</div>
-            <div className="font-outfit mb-1.5 text-[10px] uppercase tracking-[2px] text-text-muted">
-              {c.label}
+        {CONTACTS.map((c) => {
+          const content = (
+            <>
+              <div className="mb-3 text-2xl text-gold">{c.icon}</div>
+              <div className="font-outfit mb-1.5 text-[10px] uppercase tracking-[2px] text-text-muted">
+                {c.label}
+              </div>
+              <div className="mb-1 font-cormorant text-base font-normal text-text-primary">
+                {c.value}
+              </div>
+              <div className="font-outfit text-xs text-text-dim">{c.sub}</div>
+            </>
+          );
+          if (c.href) {
+            return (
+              <a
+                key={c.label}
+                href={c.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={cn(cardBase, "cursor-pointer")}
+              >
+                {content}
+              </a>
+            );
+          }
+          return (
+            <div key={c.label} className={cardBase}>
+              {content}
             </div>
-            <div className="mb-1 font-cormorant text-base font-normal text-text-primary">
-              {c.value}
-            </div>
-            <div className="font-outfit text-xs text-text-dim">{c.sub}</div>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
-      <div className={cn(cardBase, "p-10")}>
+      <form
+        className={cn(cardBase, "p-10")}
+        onSubmit={handleSubmit}
+        noValidate
+      >
         <h3 className="mb-6 font-cormorant text-xl font-normal text-text-primary">
           Оставьте заявку
         </h3>
+        {status === "success" && (
+          <p className="mb-4 font-outfit text-sm text-green-500">
+            Заявка отправлена. Мы свяжемся с вами в ближайшее время.
+          </p>
+        )}
+        {status === "error" && errorMessage && (
+          <p className="mb-4 font-outfit text-sm text-red-400" role="alert">
+            {errorMessage}
+          </p>
+        )}
         <div className="mb-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
           <input
             type="text"
+            name="name"
             placeholder="Ваше имя"
             className={inputBase}
             aria-label="Ваше имя"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            disabled={status === "loading"}
           />
           <input
             type="text"
+            name="contact"
             placeholder="Телефон или Email"
             className={inputBase}
             aria-label="Телефон или Email"
+            value={contact}
+            onChange={(e) => setContact(e.target.value)}
+            disabled={status === "loading"}
           />
         </div>
         <textarea
+          name="message"
           placeholder="Опишите ваш проект..."
           rows={4}
           className={cn(inputBase, "mb-5 resize-y")}
           aria-label="Сообщение"
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          disabled={status === "loading"}
         />
         <button
-          type="button"
-          className="gold-btn font-outfit text-xs font-medium uppercase tracking-[3px] py-3.5 px-9 border border-gold text-gold bg-transparent cursor-pointer transition-all duration-400 hover:bg-gold hover:text-bg-base"
+          type="submit"
+          disabled={status === "loading"}
+          className="gold-btn font-outfit text-xs font-medium uppercase tracking-[3px] py-3.5 px-9 border border-gold text-gold bg-transparent cursor-pointer transition-all duration-400 hover:bg-gold hover:text-bg-base disabled:opacity-60 disabled:cursor-not-allowed"
         >
-          Отправить заявку
+          {status === "loading" ? "Отправка…" : "Отправить заявку"}
         </button>
-      </div>
+      </form>
     </div>
   );
 }

@@ -2,7 +2,8 @@
 
 import { cn } from "@/shared/lib/cn";
 
-const SOCIAL_LINKS = ["Instagram", "Facebook", "Pinterest"];
+const INSTAGRAM_URL =
+  "https://www.instagram.com/zerkala_napoli?igsh=MW1uZzU1aDQ3aGh3ZA==";
 
 export function Footer({ className }: { className?: string }) {
   return (
@@ -11,18 +12,16 @@ export function Footer({ className }: { className?: string }) {
     >
       <div className="mx-auto flex max-w-[1200px] flex-wrap items-center justify-between gap-4">
         <div className="font-outfit text-xs text-text-muted">
-          © 2026 RÉFLEXION — Зеркала & Интерьер. Frankfurt am Main
+          © 2026 Napoli — Зеркала и интерьер. Махачкала
         </div>
-        <div className="flex gap-6">
-          {SOCIAL_LINKS.map((s) => (
-            <span
-              key={s}
-              className="font-outfit cursor-pointer text-[11px] tracking-wide text-text-muted hover:text-gold transition-colors"
-            >
-              {s}
-            </span>
-          ))}
-        </div>
+        <a
+          href={INSTAGRAM_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-outfit text-[11px] tracking-wide text-text-muted hover:text-gold transition-colors"
+        >
+          Instagram
+        </a>
       </div>
     </footer>
   );

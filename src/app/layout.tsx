@@ -16,9 +16,13 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "RÉFLEXION — Зеркала и интерьер",
+  title: "Napoli — Зеркала и интерьер",
   description:
-    "Премиальные зеркала на заказ. Изготовление зеркал любых форм и размеров во Франкфурте и по всей Германии.",
+    "Зеркала на заказ в Махачкале. Проспект Имама Шамиля, 146. Изготовление зеркал любых форм и размеров, доставка и монтаж.",
+  icons: {
+    icon: "/icon.png",
+    apple: "/apple-touch-icon.png",
+  },
 };
 
 export default function RootLayout({

@@ -42,15 +42,14 @@ export function InfoSection({ className }: { className?: string }) {
           О компании
         </p>
         <h2 className="font-cormorant text-[clamp(1.75rem,4vw,2.75rem)] font-light text-text-primary">
-          RÉFLEXION
+          Napoli
         </h2>
       </div>
 
       <div className="font-outfit mb-12 text-[15px] leading-loose text-text-dim">
         <p className="mb-5">
-          Мы — компания с более чем 15-летним опытом в производстве и установке зеркал
-          премиум-класса. Наша мастерская расположена во Франкфурте-на-Майне, и мы обслуживаем
-          клиентов по всей Германии.
+          Мы — магазин зеркал с многолетним опытом в производстве и установке зеркал
+          премиум-класса. Наш салон расположен на проспекте Имама Шамиля в Махачкале.
         </p>
         <p className="mb-5">
           Каждое зеркало изготавливается по индивидуальным размерам с использованием

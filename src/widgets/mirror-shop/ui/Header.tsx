@@ -43,7 +43,7 @@ export function Header({
           </div>
           <div>
             <div className="font-cormorant text-xl font-semibold tracking-wide text-text-primary">
-              RÉFLEXION
+              Napoli
             </div>
             <div className="font-outfit text-[9px] tracking-[4px] uppercase text-text-dim">
               Зеркала & Интерьер
