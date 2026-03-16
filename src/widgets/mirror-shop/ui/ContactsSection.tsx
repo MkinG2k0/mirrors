@@ -2,46 +2,7 @@
 
 import { useState, useCallback } from "react";
 import { cn } from "@/shared/lib/cn";
-
-const WHATSAPP_NUMBER = "79285006045";
-const INSTAGRAM_URL =
-  "https://www.instagram.com/zerkala_napoli?igsh=MW1uZzU1aDQ3aGh3ZA==";
-
-const CONTACTS: Array<{
-  icon: string;
-  label: string;
-  value: string;
-  sub: string;
-  href?: string;
-}> = [
-  {
-    icon: "☎",
-    label: "Телефон",
-    value: "+7 928 511 74 18",
-    sub: "Пн — Вс 09:00–18:00",
-    href: "tel:+79285117418",
-  },
-  {
-    icon: "◈",
-    label: "WhatsApp",
-    value: "+7 928 500 60 45",
-    sub: "Быстрая связь",
-    href: `https://wa.me/${WHATSAPP_NUMBER}`,
-  },
-  {
-    icon: "◎",
-    label: "Адрес",
-    value: "Проспект Имама Шамиля, 146",
-    sub: "1 этаж",
-  },
-  {
-    icon: "◇",
-    label: "Instagram",
-    value: "zerkala_napoli",
-    sub: "Мы в соцсетях",
-    href: INSTAGRAM_URL,
-  },
-];
+import { CONTACT_ITEMS } from "@/shared/constants/mirrors";
 
 const cardBase =
   "bg-white/5 border border-white/5 p-7 transition-all duration-400 cursor-default hover:bg-white/[0.07] hover:border-gold/20 hover:-translate-y-1";
@@ -105,7 +66,7 @@ export function ContactsSection({ className }: { className?: string }) {
       </div>
 
       <div className="mb-10 grid grid-cols-1 gap-6 sm:grid-cols-2">
-        {CONTACTS.map((c) => {
+        {CONTACT_ITEMS.map((c) => {
           const content = (
             <>
               <div className="mb-3 text-2xl text-gold">{c.icon}</div>

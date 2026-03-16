@@ -1,9 +1,7 @@
 "use client";
 
 import { cn } from "@/shared/lib/cn";
-
-const INSTAGRAM_URL =
-  "https://www.instagram.com/zerkala_napoli?igsh=MW1uZzU1aDQ3aGh3ZA==";
+import { FOOTER_COPY, INSTAGRAM_URL } from "@/shared/constants/mirrors";
 
 export function Footer({ className }: { className?: string }) {
   return (
@@ -12,7 +10,7 @@ export function Footer({ className }: { className?: string }) {
     >
       <div className="mx-auto flex max-w-[1200px] flex-wrap items-center justify-between gap-4">
         <div className="font-outfit text-xs text-text-muted">
-          © 2026 Napoli — Зеркала и интерьер. Махачкала
+          {FOOTER_COPY}
         </div>
         <a
           href={INSTAGRAM_URL}

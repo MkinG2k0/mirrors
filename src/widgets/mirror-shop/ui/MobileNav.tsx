@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/shared/lib/cn";
-import type { NavItem } from "@/shared/constants/mirrors";
+import type { NavItem } from "@/shared/model/mirrors";
 
 interface MobileNavProps {
   navItems: NavItem[];

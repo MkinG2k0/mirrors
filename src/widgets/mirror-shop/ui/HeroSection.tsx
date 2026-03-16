@@ -1,33 +1,17 @@
 "use client";
 
 import Link from "next/link";
+import {
+  HERO_BADGE,
+  HERO_DESCRIPTION,
+  HERO_FEATURES,
+  HERO_PROJECTS_PER_YEAR_LABEL,
+  HERO_PROJECTS_PER_YEAR_VALUE,
+} from "@/shared/constants/mirrors";
 
 interface HeroSectionProps {
   className?: string;
 }
-
-const FEATURES = [
-  {
-    icon: "◈",
-    title: "Индивидуальный размер",
-    text: "Любые размеры от 20×20 до 300×400 см",
-  },
-  {
-    icon: "◇",
-    title: "Премиум качество",
-    text: "Зеркала от ведущих европейских производителей",
-  },
-  {
-    icon: "△",
-    title: "Монтаж и доставка",
-    text: "Бесплатная доставка и установка по Франкфурту",
-  },
-  {
-    icon: "○",
-    title: "Гарантия 5 лет",
-    text: "Полная гарантия на все изделия и монтаж",
-  },
-];
 
 export function HeroSection({ className }: HeroSectionProps) {
   return (
@@ -45,7 +29,7 @@ export function HeroSection({ className }: HeroSectionProps) {
         <div className="flex flex-wrap items-center justify-center gap-12 lg:gap-20">
           <div className="max-w-[480px]">
             <p className="font-outfit mb-5 text-[11px] font-normal uppercase tracking-[5px] text-gold">
-              Премиальные зеркала на заказ
+              {HERO_BADGE}
             </p>
             <h1 className="mb-6 font-cormorant text-[clamp(2.25rem,6vw,4rem)] font-light leading-[1.1] text-text-primary">
               Отражение
@@ -55,8 +39,7 @@ export function HeroSection({ className }: HeroSectionProps) {
               стиля
             </h1>
             <p className="font-outfit mb-9 max-w-[380px] text-[15px] leading-[1.7] text-text-dim">
-              Изготовление зеркал любых форм и размеров. Индивидуальный подход к каждому проекту.
-              Доставка и установка по всей Германии.
+              {HERO_DESCRIPTION}
             </p>
             <div className="flex flex-wrap gap-4">
               <Link
@@ -80,16 +63,18 @@ export function HeroSection({ className }: HeroSectionProps) {
               aria-hidden
             />
             <div className="absolute -bottom-5 -right-5 border border-gold/20 bg-surface px-5 py-3.5 font-outfit text-xs tracking-wide">
-              <span className="text-[22px] font-semibold text-gold">500+</span>
+              <span className="text-[22px] font-semibold text-gold">
+                {HERO_PROJECTS_PER_YEAR_VALUE}
+              </span>
               <br />
-              <span className="text-text-dim">проектов в год</span>
+              <span className="text-text-dim">{HERO_PROJECTS_PER_YEAR_LABEL}</span>
             </div>
           </div>
         </div>
       </section>
 
       <div className="mb-20 grid grid-cols-1 gap-px bg-white/5 sm:grid-cols-2 lg:grid-cols-4">
-        {FEATURES.map((f, i) => (
+        {HERO_FEATURES.map((f, i) => (
           <div
             key={f.title}
             className={`bg-surface px-8 py-10 lg:border-r ${i < 3 ? "lg:border-white/5" : ""}`}

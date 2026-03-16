@@ -3,7 +3,7 @@
 import { cn } from "@/shared/lib/cn";
 import { formatPrice } from "@/shared/utils/formatPrice";
 import { MIRRORS, CATEGORIES } from "@/shared/constants/mirrors";
-import type { Mirror } from "@/shared/constants/mirrors";
+import type { Mirror } from "@/shared/model/mirrors";
 
 interface CatalogSectionProps {
   category: string;

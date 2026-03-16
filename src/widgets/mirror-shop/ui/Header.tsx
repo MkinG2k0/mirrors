@@ -1,7 +1,8 @@
 "use client";
 
 import { cn } from "@/shared/lib/cn";
-import type { NavItem } from "@/shared/constants/mirrors";
+import type { NavItem } from "@/shared/model/mirrors";
+import { BRAND_NAME, BRAND_TAGLINE } from "@/shared/constants/mirrors";
 
 interface HeaderProps {
   section: string;
@@ -43,10 +44,10 @@ export function Header({
           </div>
           <div>
             <div className="font-cormorant text-xl font-semibold tracking-wide text-text-primary">
-              Napoli
+              {BRAND_NAME}
             </div>
             <div className="font-outfit text-[9px] tracking-[4px] uppercase text-text-dim">
-              Зеркала & Интерьер
+              {BRAND_TAGLINE}
             </div>
           </div>
         </button>
