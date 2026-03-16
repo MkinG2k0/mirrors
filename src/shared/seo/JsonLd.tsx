@@ -1,5 +1,3 @@
-"use client";
-
 import {
   BUSINESS_ADDRESS,
   BUSINESS_CITY,
@@ -67,7 +65,7 @@ export function getLocalBusinessJsonLd(siteUrl: string) {
       },
       {
         "@type": "ContactPoint",
-        telephone: `+7 ${WHATSAPP_NUMBER}`,
+        telephone: `+${WHATSAPP_NUMBER}`,
         contactType: "customer service",
         areaServed: "RU",
         availableLanguage: ["ru"],
