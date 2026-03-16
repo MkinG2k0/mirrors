@@ -1,7 +1,8 @@
 "use client";
 
+import Link from "next/link";
+
 interface HeroSectionProps {
-  onNavigate: (key: string) => void;
   className?: string;
 }
 
@@ -28,7 +29,7 @@ const FEATURES = [
   },
 ];
 
-export function HeroSection({ onNavigate, className }: HeroSectionProps) {
+export function HeroSection({ className }: HeroSectionProps) {
   return (
     <div className={className}>
       <section className="relative flex min-h-[80vh] items-center justify-center overflow-hidden py-12">
@@ -58,20 +59,18 @@ export function HeroSection({ onNavigate, className }: HeroSectionProps) {
               Доставка и установка по всей Германии.
             </p>
             <div className="flex flex-wrap gap-4">
-              <button
-                type="button"
-                onClick={() => onNavigate("catalog")}
+              <Link
+                href="/catalog"
                 className="gold-btn font-outfit text-xs font-medium uppercase tracking-[3px] py-3.5 px-9 border border-gold text-gold bg-transparent cursor-pointer transition-all duration-400 hover:bg-gold hover:text-bg-base"
               >
                 Каталог
-              </button>
-              <button
-                type="button"
-                onClick={() => onNavigate("calculator")}
+              </Link>
+              <Link
+                href="/calculator"
                 className="gold-btn font-outfit text-xs font-medium uppercase tracking-[3px] py-3.5 px-9 border border-white/15 text-text-primary bg-transparent cursor-pointer transition-all duration-400 hover:bg-gold hover:text-bg-base"
               >
                 Калькулятор
-              </button>
+              </Link>
             </div>
           </div>
 

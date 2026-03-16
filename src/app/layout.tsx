@@ -15,10 +15,63 @@ const outfit = Outfit({
   weight: ["300", "400", "500", "600"],
 });
 
+const SITE_NAME = "Napoli — Зеркала и интерьер";
+const SITE_DESCRIPTION =
+  "Зеркала на заказ премиум-класса. Индивидуальные размеры, подсветка, монтаж и доставка. Салон Napoli — профессиональное изготовление и установка зеркал для интерьера.";
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+
 export const metadata: Metadata = {
-  title: "Napoli — Зеркала и интерьер",
-  description:
-    "Зеркала на заказ в Махачкале. Проспект Имама Шамиля, 146. Изготовление зеркал любых форм и размеров, доставка и монтаж.",
+  metadataBase: siteUrl ? new URL(siteUrl) : undefined,
+  title: {
+    default: SITE_NAME,
+    template: "%s — Napoli",
+  },
+  description: SITE_DESCRIPTION,
+  keywords: [
+    "зеркала на заказ",
+    "зеркала для интерьера",
+    "настенные зеркала",
+    "зеркала с подсветкой",
+    "изготовление зеркал",
+    "монтаж зеркал",
+  ],
+  openGraph: {
+    type: "website",
+    siteName: SITE_NAME,
+    title: SITE_NAME,
+    description: SITE_DESCRIPTION,
+    locale: "ru_RU",
+    url: "/",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Napoli — премиальные зеркала на заказ",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE_NAME,
+    description: SITE_DESCRIPTION,
+    images: ["/og-image.png"],
+  },
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-snippet": -1,
+      "max-image-preview": "large",
+      "max-video-preview": -1,
+    },
+  },
   icons: {
     icon: "/icon.png",
     apple: "/apple-touch-icon.png",
