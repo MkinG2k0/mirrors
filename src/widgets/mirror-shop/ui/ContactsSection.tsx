@@ -2,7 +2,7 @@
 
 import { useState, useCallback } from "react";
 import { cn } from "@/shared/lib/cn";
-import { CONTACT_ITEMS } from "@/shared/constants/mirrors";
+import { CONTACT_ITEMS, WHATSAPP_NUMBER } from "@/shared/constants/mirrors";
 
 const cardBase =
   "bg-white/5 border border-white/5 p-7 transition-all duration-400 cursor-default hover:bg-white/[0.07] hover:border-gold/20 hover:-translate-y-1";
@@ -25,23 +25,45 @@ export function ContactsSection({ className }: { className?: string }) {
       setErrorMessage("");
       setStatus("loading");
       try {
+        const trimmedName = name.trim();
+        const trimmedContact = contact.trim();
+        const trimmedMessage = message.trim();
+
         const res = await fetch("/api/contact", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            name: name.trim(),
-            contact: contact.trim(),
-            message: message.trim(),
+            name: trimmedName,
+            contact: trimmedContact,
+            message: trimmedMessage,
           }),
         });
         const data = await res.json().catch(() => ({}));
         if (!res.ok) {
           setStatus("error");
           setErrorMessage(
-            typeof data?.error === "string" ? data.error : "Не удалось отправить заявку"
+            typeof data?.error === "string"
+              ? data.error
+              : "Не удалось отправить заявку",
           );
           return;
         }
+
+        const whatsappLines = [
+          "Здравствуйте! Оставил(а) заявку на сайте Napoli.",
+          "",
+          trimmedName && `Имя: ${trimmedName}`,
+          trimmedContact && `Контакт: ${trimmedContact}`,
+          trimmedMessage && `Сообщение: ${trimmedMessage}`,
+        ].filter(Boolean);
+
+        const whatsappText = whatsappLines.join("\n");
+        const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+          whatsappText,
+        )}`;
+
+        window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+
         setStatus("success");
         setName("");
         setContact("");
@@ -51,7 +73,7 @@ export function ContactsSection({ className }: { className?: string }) {
         setErrorMessage("Ошибка соединения");
       }
     },
-    [name, contact, message]
+    [name, contact, message],
   );
 
   return (
@@ -100,11 +122,7 @@ export function ContactsSection({ className }: { className?: string }) {
         })}
       </div>
 
-      <form
-        className={cn(cardBase, "p-10")}
-        onSubmit={handleSubmit}
-        noValidate
-      >
+      <form className={cn(cardBase, "p-10")} onSubmit={handleSubmit} noValidate>
         <h3 className="mb-6 font-cormorant text-xl font-normal text-text-primary">
           Оставьте заявку
         </h3>

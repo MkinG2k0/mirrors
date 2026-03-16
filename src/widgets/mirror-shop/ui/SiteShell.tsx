@@ -8,13 +8,14 @@ import { Header } from "./Header";
 import { MobileNav } from "./MobileNav";
 import { Footer } from "./Footer";
 
-type SectionKey = "home" | "catalog" | "calculator" | "info" | "contacts";
+type SectionKey = "home" | "catalog" | "calculator" | "info" | "reviews" | "contacts";
 
 const SECTION_PATHS: Record<SectionKey, string> = {
   home: "/",
   catalog: "/catalog",
   calculator: "/calculator",
   info: "/about",
+  reviews: "/reviews",
   contacts: "/contacts",
 };
 
@@ -22,6 +23,7 @@ function getSectionFromPath(pathname: string): SectionKey {
   if (pathname.startsWith("/catalog")) return "catalog";
   if (pathname.startsWith("/calculator")) return "calculator";
   if (pathname.startsWith("/about")) return "info";
+  if (pathname.startsWith("/reviews")) return "reviews";
   if (pathname.startsWith("/contacts")) return "contacts";
   return "home";
 }

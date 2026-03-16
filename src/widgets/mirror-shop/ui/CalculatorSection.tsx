@@ -2,7 +2,7 @@
 
 import { cn } from "@/shared/lib/cn";
 import { formatPrice } from "@/shared/utils/formatPrice";
-import { MIRRORS, SHAPES } from "@/shared/constants/mirrors";
+import { MIRRORS, SHAPES, WHATSAPP_NUMBER } from "@/shared/constants/mirrors";
 import { MirrorPreview } from "./MirrorPreview";
 
 interface CalculatorSectionProps {
@@ -50,6 +50,22 @@ export function CalculatorSection({
   );
   const shapeLabel = SHAPES.find((s) => s.key === calcShape)?.label ?? "";
 
+  const handleOrderClick = () => {
+    const message = [
+      "Здравствуйте! Хочу оформить заказ на зеркало Napoli.",
+      "",
+      `Тип: ${selectedMirror.name}`,
+      `Форма: ${shapeLabel}`,
+      `Размер: ${calcWidth} × ${calcHeight} см`,
+      `Площадь: ${areaSqM.toFixed(2)} м²`,
+      `Ориентировочная стоимость: ${formatPrice(calcPrice)}`,
+    ].join("\n");
+
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
+
   return (
     <div className={cn("pb-20 pt-14", className)}>
       <div className="mb-12 text-center">
@@ -83,7 +99,7 @@ export function CalculatorSection({
                       : "bg-white/5 border border-white/5 text-text-dim"
                   )}
                 >
-                  <span className="mr-2">{m.image}</span> {m.name}
+                  {m.name}
                 </button>
               ))}
             </div>
@@ -199,7 +215,7 @@ export function CalculatorSection({
             <MirrorPreview width={calcWidth} height={calcHeight} shape={calcShape} />
           </div>
 
-          <div className="border border-gold/15 bg-gradient-to-br from-gold/10 to-gold/5 p-8">
+          <div className="border border-gold/15 bg-linear-to-br from-gold/10 to-gold/5 p-8">
             <p className="font-outfit mb-2 text-[11px] uppercase tracking-[2px] text-text-dim">
               Итого
             </p>
@@ -234,6 +250,7 @@ export function CalculatorSection({
 
             <button
               type="button"
+              onClick={handleOrderClick}
               className="gold-btn w-full text-center font-outfit text-xs font-medium uppercase tracking-[3px] py-3.5 px-9 border border-gold text-gold bg-transparent cursor-pointer transition-all duration-400 hover:bg-gold hover:text-bg-base"
             >
               Оформить заказ

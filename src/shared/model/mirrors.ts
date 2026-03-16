@@ -8,6 +8,9 @@ export interface Mirror {
   desc: string;
   thickness: string;
   features: string[];
+  defaultWidthCm?: number;
+  defaultHeightCm?: number;
+  defaultShapeKey?: string;
 }
 
 export interface CategoryItem {
@@ -50,4 +53,13 @@ export interface ContactItem {
   sub: string;
   href?: string;
 }
+
+export interface Review {
+  author: string;
+  date: string;
+  text: string;
+  source: string;
+  rating?: number;
+}
+
 
