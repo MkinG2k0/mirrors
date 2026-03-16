@@ -111,6 +111,8 @@ export const BUSINESS_CITY = "Махачкала";
 
 export const BUSINESS_ADDRESS = "Проспект Имама Шамиля, 146";
 
+export const BUSINESS_POSTAL_CODE = "367030";
+
 export const BUSINESS_FULL_ADDRESS = `${BUSINESS_CITY}, ${BUSINESS_ADDRESS}`;
 
 export const BRAND_NAME = "Napoli";
