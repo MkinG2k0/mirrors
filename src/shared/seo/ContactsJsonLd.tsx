@@ -1,5 +1,3 @@
-"use client";
-
 import { JsonLd, getLocalBusinessJsonLd } from "./JsonLd";
 
 interface ContactsJsonLdProps {

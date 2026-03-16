@@ -74,4 +74,3 @@ export function getLocalBusinessJsonLd(siteUrl: string) {
     sameAs: [INSTAGRAM_URL],
   };
 }
-
