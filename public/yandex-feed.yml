@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<yml_catalog date="2026-03-16 12:00">
+<shop>
+<name>Napoli</name>
+<company>Napoli — Зеркала &amp; Интерьер</company>
+<url>https://zerkalanapoli.ru</url>
+
+<currencies>
+<currency id="RUR" rate="1"/>
+</currencies>
+
+<categories>
+<category id="1">Зеркала</category>
+<category id="2" parentId="1">Классические</category>
+<category id="3" parentId="1">С подсветкой</category>
+<category id="4" parentId="1">Безрамные</category>
+<category id="5" parentId="1">В раме</category>
+<category id="6" parentId="1">Круглые</category>
+<category id="7" parentId="1">С гравировкой</category>
+</categories>
+
+<offers>
+<offer id="1" available="true">
+<categoryId>2</categoryId>
+<name>Зеркало классическое Napoli</name>
+<vendor>Napoli</vendor>
+<description><![CDATA[Элегантное зеркало с фацетной обработкой края. Идеально для прихожей и гостиной. Цена указана за 1 м².]]></description>
+<price>4200</price>
+<currencyId>RUR</currencyId>
+<pickup>true</pickup>
+<delivery>true</delivery>
+<store>true</store>
+</offer>
+
+<offer id="2" available="true">
+<categoryId>3</categoryId>
+<name>Зеркало с LED подсветкой Napoli</name>
+<vendor>Napoli</vendor>
+<description><![CDATA[Современное зеркало с встроенной LED-подсветкой и сенсорным выключателем. Цена указана за 1 м².]]></description>
+<price>7800</price>
+<currencyId>RUR</currencyId>
+<pickup>true</pickup>
+<delivery>true</delivery>
+<store>true</store>
+</offer>
+
+<offer id="3" available="true">
+<categoryId>4</categoryId>
+<name>Зеркало безрамное Napoli</name>
+<vendor>Napoli</vendor>
+<description><![CDATA[Минималистичное зеркало без рамы с обработанным краем. Универсальное решение. Цена указана за 1 м².]]></description>
+<price>3400</price>
+<currencyId>RUR</currencyId>
+<pickup>true</pickup>
+<delivery>true</delivery>
+<store>true</store>
+</offer>
+
+<offer id="4" available="true">
+<categoryId>5</categoryId>
+<name>Зеркало в багетной раме Napoli</name>
+<vendor>Napoli</vendor>
+<description><![CDATA[Зеркало в роскошной багетной раме ручной работы. Подчеркнёт статус интерьера. Цена указана за 1 м².]]></description>
+<price>6500</price>
+<currencyId>RUR</currencyId>
+<pickup>true</pickup>
+<delivery>true</delivery>
+<store>true</store>
+</offer>
+
+<offer id="5" available="true">
+<categoryId>6</categoryId>
+<name>Зеркало круглое Napoli</name>
+<vendor>Napoli</vendor>
+<description><![CDATA[Стильное круглое зеркало. Тренд современного дизайна. Цена указана за 1 м².]]></description>
+<price>5200</price>
+<currencyId>RUR</currencyId>
+<pickup>true</pickup>
+<delivery>true</delivery>
+<store>true</store>
+</offer>
+
+<offer id="6" available="true">
+<categoryId>7</categoryId>
+<name>Зеркало с гравировкой Napoli</name>
+<vendor>Napoli</vendor>
+<description><![CDATA[Уникальное зеркало с художественной пескоструйной гравировкой по эскизу клиента. Цена указана за 1 м².]]></description>
+<price>9200</price>
+<currencyId>RUR</currencyId>
+<pickup>true</pickup>
+<delivery>true</delivery>
+<store>true</store>
+</offer>
+</offers>
+</shop>
+</yml_catalog>

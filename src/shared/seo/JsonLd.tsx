@@ -1,6 +1,7 @@
 import {
   BUSINESS_ADDRESS,
   BUSINESS_CITY,
+  BUSINESS_POSTAL_CODE,
   BRAND_NAME,
   INSTAGRAM_URL,
   WHATSAPP_NUMBER,
@@ -37,6 +38,7 @@ export function getLocalBusinessJsonLd(siteUrl: string) {
       "@type": "PostalAddress",
       streetAddress: BUSINESS_ADDRESS,
       addressLocality: BUSINESS_CITY,
+      postalCode: BUSINESS_POSTAL_CODE,
       addressCountry: "RU",
     },
     openingHoursSpecification: [
