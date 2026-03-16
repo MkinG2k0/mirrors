@@ -1,4 +1,5 @@
 import { AboutPageContent } from "@/widgets/mirror-shop";
+import { FaqJsonLd } from "@/shared/seo/FaqJsonLd";
 
 export const revalidate = 60;
 
@@ -11,6 +12,11 @@ export const metadata = {
 };
 
 export default function AboutPage() {
-  return <AboutPageContent />;
+  return (
+    <>
+      <FaqJsonLd />
+      <AboutPageContent />
+    </>
+  );
 }
 

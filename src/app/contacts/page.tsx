@@ -1,4 +1,5 @@
 import { ContactsPageContent } from "@/widgets/mirror-shop";
+import { ContactsJsonLd } from "@/shared/seo/ContactsJsonLd";
 
 export const revalidate = 60;
 
@@ -11,6 +12,11 @@ export const metadata = {
 };
 
 export default function ContactsPage() {
-  return <ContactsPageContent />;
+  return (
+    <>
+      <ContactsJsonLd />
+      <ContactsPageContent />
+    </>
+  );
 }
 
